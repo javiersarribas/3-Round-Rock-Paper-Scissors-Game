@@ -1,29 +1,24 @@
 const options = document.querySelectorAll(".options");
     let playerScore = 0;
     let compScore = 0;
-	
-	/*add*/
 	let moves = 3;
-	/*add*/
-
+	
     options.forEach((option) => {
       option.addEventListener("click", function () {
         const playerInput = this.value;
-		
-		/*add Added move counter */
-		
+	
         moves--;
         
-		/*add*/
-
         const cOptions = ["Rock", "Paper", "Scissors"];
         const compInput = cOptions[Math.floor(Math.random() * 3)];
         
         updateMoves(playerInput, compInput);
         compareInputs(playerInput, compInput);
         updateScore();
+		
         if(checkWinner()){
-          
+          hideOptions();
+		  unhideRestart();
           updateScore();
         }
 	
@@ -112,10 +107,7 @@ const options = document.querySelectorAll(".options");
 		}
 		  		  
         displayResult(winner);
-		
-		
-		hideOptions();
-		unhideRestart();
+				
 		return true;		
       }
 	  return false;
